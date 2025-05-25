@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mais Mais 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: black;
+      color: white;
+      background-image: url('https://i.imgur.com/O8T0ZKl.jpg');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .login-screen, .message-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .login-screen.active, .message-screen.active {
+      display: flex;
+    }
+
+    .login-box input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      text-align: center;
+    }
+
+    .login-box button {
+      padding: 0.6rem 1.2rem;
+      background-color: pink;
+      border: none;
+      border-radius: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .rain span {
+      position: fixed;
+      top: -10%;
+      font-size: 2rem;
+      animation: fall 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh);
+        opacity: 0;
+      }
+    }
+
+    .edward {
+      width: 150px;
+      margin: 1rem auto;
+      display: block;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-screen active">
+    <img src="https://i.imgur.com/E70zD2u.png" alt="Capivara" width="180"/>
+    <h2>Fale seu nome e data, mais mais?</h2>
+    <div class="login-box">
+      <input type="text" id="nome" placeholder="Seu nome"/>
+      <input type="text" id="data" placeholder="Sua data (ex: 24/06)"/>
+      <button onclick="verificarLogin()">Entrar</button>
+      <p id="erro" style="color: pink; margin-top: 1rem;"></p>
+    </div>
+  </div>
+
+  <div class="message-screen">
+    <audio autoplay loop>
+      <source src="https://p.scdn.co/mp3-preview/f08bde0141e6b2c45f2e0ec4bce66efbc40e5b1e?cid=774b29d4f13844c495f206cafdad9c86" type="audio/mpeg" />
+    </audio>
+    <img class="edward" src="https://w7.pngwing.com/pngs/780/913/png-transparent-edward-cullen-the-twilight-saga-robert-pattinson-bella-swan-edw-film-fashion-model-formal-wear.png" />
+    <h1>Parabéns, Sol! 💖🌺</h1>
+    <p>
+      Te desejo tudo de melhor que a vida possa oferecer.<br/>
+      Que Deus te ilumine sempre e esteja ao seu lado em todos os momentos.<br/>
+      Continue sendo essa pessoa iluminada e cheia de paz que encanta a todos.<br/>
+      Muito obrigado por me permitir fazer parte da sua vida.<br/>
+      De coração, espero que todos os seus sonhos se realizem.<br/>
+      Beijos com carinho! 🌺💖
+    </p>
+  </div>
+
+  <script>
+    function verificarLogin() {
+      const nome = document.getElementById("nome").value.trim().toLowerCase();
+      const data = document.getElementById("data").value.trim();
+      if ((nome === "micaela") && (data === "24/06")) {
+        document.querySelector(".login-screen").classList.remove("active");
+        document.querySelector(".message-screen").classList.add("active");
+        criarChuva();
+      } else {
+        document.getElementById("erro").innerText = "Você não é a mais mais.";
+      }
+    }
+
+    function criarChuva() {
+      const simbolos = ['🌸','💖','🌟'];
+      for (let i = 0; i < 60; i++) {
+        const span = document.createElement('span');
+        span.innerText = simbolos[Math.floor(Math.random() * simbolos.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDelay = Math.random() * 5 + 's';
+        span.classList.add('rain');
+        document.body.appendChild(span);
+      }
+    }
+  </script>
+</body>
+</html>
